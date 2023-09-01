@@ -14,7 +14,7 @@ function New(props){
                <br/>
                FlightNo: <input type= 'number' min="10" max="9999" name='flightNo' />
                <br/>
-               Departs:  <input type="datetime-local" value= {departsDate}/>
+               Departs:  <input type="datetime-local" defaultValue= {departsDate}/>
                <br/>
                <input type='submit' name='' value= 'Create Flight' />
             </form>
