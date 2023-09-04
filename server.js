@@ -37,6 +37,9 @@ app.get('/flights', async (req, res) => {
     }
 });
 
+
+
+
 /**
  * New
  */
@@ -48,6 +51,21 @@ app.get('/flights/new', (req, res) => {
 	const departsDate = dt.toISOString().slice(0, 16);
 	res.render('New', {departsDate});
     
+})
+
+/*
+** Show
+*/
+app.get('/flights/:id', async(req, res) => {
+    const {id} = req.params
+    try{
+        const flights = await Flight.findById(id);
+        res.render('Show', {
+            flights: flights
+        })
+    }catch(e){
+        console.log(e)
+    }
 })
 
 /**

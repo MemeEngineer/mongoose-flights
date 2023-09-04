@@ -11,6 +11,13 @@ function New(props){
                 <option value="United">United</option>
                 <option value="Southwest">Southwest</option>
                </select>
+               Airport: <select type='text' name='airport'>
+                <option value="AUS">AUS</option>
+                <option value="DAL">DAL</option>
+                <option value="LAX">LAN</option>
+                <option value="SAN">SAN</option>
+                <option value="SEA">SEA</option>
+               </select>
                <br/>
                FlightNo: <input type= 'number' min="10" max="9999" name='flightNo' />
                <br/>
