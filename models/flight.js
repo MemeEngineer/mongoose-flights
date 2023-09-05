@@ -1,21 +1,20 @@
 const mongoose = require("mongoose");
 
 const date = new Date();
-date.setFullYear(date.getFullYear() + 1)
+date.setFullYear(date.getFullYear() + 1);
 // console.log(date)
 
 const destinationSchema = new mongoose.Schema({
   airport: {
     type: String,
-    enum: ['AUS', 'DAL', 'LAX', 'SAN', 'SEA'],
-    required: true 
+    enum: ["AUS", "DAL", "LAX", "SAN", "SEA"],
+    required: true,
   },
   arrival: {
-    type: Date, 
-    default: new Date(),
-    required: true
-  }
-})
+    type: Date,
+    required: true,
+  },
+});
 const flightSchema = new mongoose.Schema({
   airline: {
     type: String,
@@ -26,11 +25,11 @@ const flightSchema = new mongoose.Schema({
   departs: { type: Date, default: date, require: true },
   airport: {
     type: String,
-    enum: ['AUS', 'DAL', 'LAX', 'SAN', 'SEA'],
-    default: 'SAN',
-    required: true 
+    enum: ["AUS", "DAL", "LAX", "SAN", "SEA"],
+    default: "SAN",
+    required: true,
   },
-  destination: [destinationSchema]
+  destinations: [destinationSchema],
 });
 
 const Flight = mongoose.model("Flight", flightSchema);

@@ -13,8 +13,32 @@ function Show(props){
             <br/>
             Aiport: {flights.airport}
             <br/>
-            Destination: {flights.destination}
-
+            Destination: {flights.destinations.map((destination) => {
+                return(
+                    <div key={destination.id}>
+                        <li>
+                       Airport: {destination.airport}
+                    </li>
+                        <li>
+                        Arrival: {destination.arrival.toString()}
+                    </li>
+                    <hr/>
+                    </div>
+                    
+                )
+            })}
+            <form action= {`/flights/${flights.id}`} method="POST">
+            Airport: <select type='text' name='airport'>
+                <option value="AUS">AUS</option>
+                <option value="DAL">DAL</option>
+                <option value="LAX">LAN</option>
+                <option value="SAN">SAN</option>
+                <option value="SEA">SEA</option>
+               </select>
+               Arrival: <input type="datetime-local"  name="arrival" />
+               <input type='submit' name='' value= 'Add Destination' />
+               </form>
+               <button> <a href='/flights'>Back</a></button>
         </main>
     )
 }

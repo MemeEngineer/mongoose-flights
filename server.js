@@ -68,12 +68,28 @@ app.get('/flights/:id', async(req, res) => {
     }
 })
 
+/*
+* Update
+*/
+app.post('/flights/:id', async (req, res) => {
+    const {id} = req.params
+    try{
+        const findFlight = await Flight.findById(id);
+        findFlight.destinations.push(req.body)
+        const updatedFlight = await Flight.findByIdAndUpdate(id, findFlight, {new: true} )
+        res.send(updatedFlight)
+        res.redirect(`/flights/${updatedFlight.id}`)
+    }catch(e){
+        console.log(e)
+    }
+})
+
 /**
  * Post
  */
 app.post('/flights', async(req, res)=> {
 
-    // create a new fruit in db
+    // create a new flight in db
     try {
         const createdFlight = await Flight.create(req.body);
         console.log(createdFlight);
@@ -84,6 +100,9 @@ app.post('/flights', async(req, res)=> {
         // res.json({error});
     }
 })
+
+
+
 
 //connect to database from config file
 connectDB()
