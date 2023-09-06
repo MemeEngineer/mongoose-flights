@@ -7,6 +7,8 @@ const mongoose = require('mongoose');
 const connectDB = require('./config/database')
 const Flight = require('./models/flight')
 
+
+
 //app config -- see templates
 app.set('view engine', 'jsx');
 app.engine('jsx',jsxEngine())
@@ -27,7 +29,7 @@ app.get('/', (req, res) => {
  */
 app.get('/flights', async (req, res) => {
     try {
-        const flight = await Flight.find({}).sort({departs: 'asc'});
+        const flight = await Flight.find({}).sort({departs: 'asc'})
         //flights: will be the props passed into the index view page
         res.render('Index', {
             flights: flight
@@ -59,7 +61,7 @@ app.get('/flights/new', (req, res) => {
 app.get('/flights/:id', async(req, res) => {
     const {id} = req.params
     try{
-        const flights = await Flight.findById(id);
+        const flights = await Flight.findById(id)
         res.render('Show', {
             flights: flights
         })
@@ -69,7 +71,7 @@ app.get('/flights/:id', async(req, res) => {
 })
 
 /*
-* Update
+* Update/ adding destinations to flights
 */
 app.post('/flights/:id', async (req, res) => {
     const {id} = req.params
@@ -77,7 +79,7 @@ app.post('/flights/:id', async (req, res) => {
         const findFlight = await Flight.findById(id);
         findFlight.destinations.push(req.body)
         const updatedFlight = await Flight.findByIdAndUpdate(id, findFlight, {new: true} )
-        res.send(updatedFlight)
+        // res.send(updatedFlight)
         res.redirect(`/flights/${updatedFlight.id}`)
     }catch(e){
         console.log(e)

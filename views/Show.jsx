@@ -13,7 +13,7 @@ function Show(props){
             <br/>
             Aiport: {flights.airport}
             <br/>
-            Destination: {flights.destinations.map((destination) => {
+            Destination: {flights.destinations.map((destination)=> {
                 return(
                     <div key={destination.id}>
                         <li>
